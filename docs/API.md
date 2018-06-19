@@ -28,7 +28,10 @@ See full documentation in the [Filtering section](Filtering.md#filterby-arraystr
 ##### `labelKey: String|Function`
 See full documentation in the [Rendering section](Rendering.md#labelkey-string--function).
 
-##### `renderMenu: Function`, `renderMenuItemChildren: Function`, and `renderToken: Function`
+#### `alwaysShowNew: Boolean`
+Always show the new option even if there is an exact match
+
+##### `renderMenu: Function`, `renderMenuItemChildren: Function`, `renderNewOption: Function`, and `renderToken: Function`
 See full documentation in the [Rendering section](Rendering.md#rendermenuresults-arrayobject--string-menuprops-object).
 
 ##### `onChange(selected: Array<Object|String>)`

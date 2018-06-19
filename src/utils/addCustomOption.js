@@ -1,6 +1,14 @@
 import {uniqueId} from 'lodash';
 import {getOptionLabel, getStringLabelKey} from './index';
 
+export function getCustomOption(text, labelKey) {
+  return {
+    customOption: true,
+    id: uniqueId('new-id-'),
+    [getStringLabelKey(labelKey)]: text,
+  };
+}
+
 function addCustomOption(results, text, labelKey) {
   const exactMatchFound = results.some((o) => (
     getOptionLabel(o, labelKey) === text
@@ -10,13 +18,7 @@ function addCustomOption(results, text, labelKey) {
     return results;
   }
 
-  const customOption = {
-    customOption: true,
-    id: uniqueId('new-id-'),
-    [getStringLabelKey(labelKey)]: text,
-  };
-
-  return [...results, customOption];
+  return [...results, getCustomOption(text, labelKey)];
 }
 
 export default addCustomOption;

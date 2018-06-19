@@ -60,6 +60,17 @@ Allows you to control the contents of a menu item. Your function will be passed 
   }}
 />
 ```
+### `renderNewOption(option: Object|String, props: Object)`
+Allows you to control the contents of the virtual menu item added when there is either not an exact match or alwaysShowNew is set to true
+
+```jsx
+<Typeahead
+  options={options}
+  renderNewOption={(option, props) => {
+    /* Render custom contents here. */
+  }}
+/>
+```
 
 ### `renderToken(option: Object|String, props: Object, index: Number)`
 Provides the ability to customize rendering of tokens when multiple selections are enabled. This callback is ignored if `multiple=false`.

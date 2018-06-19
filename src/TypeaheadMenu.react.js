@@ -14,6 +14,7 @@ class TypeaheadMenu extends React.Component {
       newSelectionPrefix,
       options,
       renderMenuItemChildren,
+      renderNewOption,
       text,
       ...menuProps
     } = this.props;
@@ -30,7 +31,7 @@ class TypeaheadMenu extends React.Component {
       labelKey,
       newSelectionPrefix,
       renderMenuItemChildren,
-      text,
+      renderNewOption,
     } = this.props;
 
     const label = getOptionLabel(option, labelKey);
@@ -49,10 +50,7 @@ class TypeaheadMenu extends React.Component {
           {...menuItemProps}
           className="rbt-menu-custom-option"
           label={newSelectionPrefix + label}>
-          {newSelectionPrefix}
-          <Highlighter search={text}>
-            {label}
-          </Highlighter>
+          {renderNewOption(option, this.props, idx)}
         </MenuItem>
       );
     }
@@ -95,6 +93,14 @@ TypeaheadMenu.defaultProps = {
     <Highlighter search={props.text}>
       {getOptionLabel(option, props.labelKey)}
     </Highlighter>
+  ),
+  renderNewOption: (option, props, idx) => (
+    <span>
+      {props.newSelectionPrefix}
+      <Highlighter search={props.text}>
+        {getOptionLabel(option, props.labelKey)}
+      </Highlighter>
+    </span>
   ),
 };
 

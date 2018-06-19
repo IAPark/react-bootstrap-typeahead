@@ -5,7 +5,7 @@ import React from 'react';
 
 import highlightOnlyResultContainer from './highlightOnlyResultContainer';
 import {caseSensitiveType, checkPropType, defaultInputValueType, highlightOnlyResultType, ignoreDiacriticsType, inputPropsType, labelKeyType, optionType} from '../propTypes/';
-import {addCustomOption, defaultFilterBy, getDisplayName, getOptionLabel, getStringLabelKey, getTruncatedOptions, pluralize} from '../utils/';
+import {addCustomOption, getCustomOption, defaultFilterBy, getDisplayName, getOptionLabel, getStringLabelKey, getTruncatedOptions, pluralize} from '../utils/';
 
 import {DEFAULT_LABELKEY} from '../constants/defaultLabelKey';
 import {DOWN, ESC, RETURN, RIGHT, TAB, UP} from '../constants/keyCode';
@@ -109,6 +109,7 @@ function typeaheadContainer(Typeahead) {
 
     render() {
       const {
+        alwaysShowNew,
         allowNew,
         emptyLabel,
         filterBy,
@@ -136,7 +137,9 @@ function typeaheadContainer(Typeahead) {
       results = getTruncatedOptions(results, shownResults);
 
       // Add the custom option.
-      if (allowNew) {
+      if (alwaysShowNew) {
+        results = [...results, getCustomOption(text, labelKey)];
+      } else if (allowNew) {
         results = addCustomOption(results, text, labelKey);
       }
 
@@ -617,6 +620,7 @@ function typeaheadContainer(Typeahead) {
     },
     align: 'justify',
     allowNew: false,
+    alwaysShowNew: false,
     autoFocus: false,
     bodyContainer: false,
     caseSensitive: false,

@@ -73,6 +73,7 @@ class Typeahead extends React.Component {
       'maxHeight',
       'newSelectionPrefix',
       'renderMenuItemChildren',
+      'renderNewOption',
       'text',
     ]);
 
